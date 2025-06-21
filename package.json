@@ -1,0 +1,13 @@
+{
+  "source": "index.html",
+  "scripts": {
+    "dev": "parcel",
+    "build": "parcel build"
+  },
+  "dependencies": {
+    "chart.js": "^4.4.9"
+  },
+  "devDependencies": {
+    "parcel": "^2.15.2"
+  }
+}
