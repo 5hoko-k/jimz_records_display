@@ -2,8 +2,19 @@ import Chart from "chart.js/auto";
 import { getData } from "./fetchData.mjs";
 
 async function getChart() {
-  const [salesLabels, salesValues, servicesLabels, servicesValues] =
-    await getData();
+  const [
+    salesLabels,
+    salesValues,
+    servicesLabels,
+    servicesValues,
+    salesData,
+    servicesData,
+  ] = await getData();
+
+  console.log("Got the Sales data: ");
+  console.log(salesData);
+  console.log("Got the Services data: ");
+  console.log(servicesData);
 
   const salesChartElement = document.getElementById("salesChart");
   new Chart(salesChartElement, {

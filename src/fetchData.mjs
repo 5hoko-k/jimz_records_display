@@ -18,19 +18,35 @@ export async function getData() {
       salesData = resData.sales;
       servicesData = resData.services;
 
-      console.log("Got the Sales data: ");
-      console.log(salesData);
-      console.log("Got the Services data: ");
-      console.log(servicesData);
-
-      salesDataLabels = salesData.map((row) => row.date);
+      salesDataLabels = salesData.map((row) => {
+        const date = new Date(row.date);
+        return date.toLocaleDateString("en-US", {
+          day: "numeric",
+          month: "short",
+          year: "numeric",
+        });
+      });
       salesDataValues = salesData.map((row) => row.sales_total);
-      servicesDataLabels = servicesData.map((row) => row.date);
+      servicesDataLabels = servicesData.map((row) => {
+        const date = new Date(row.date);
+        return date.toLocaleDateString("en-US", {
+          day: "numeric",
+          month: "short",
+          year: "numeric",
+        });
+      });
       servicesDataValues = servicesData.map((row) => row.services_total);
     })
     .catch((error) => {
       console.log(error);
     });
 
-  return [salesDataLabels, salesDataValues, servicesDataLabels, servicesDataValues];
+  return [
+    salesDataLabels,
+    salesDataValues,
+    servicesDataLabels,
+    servicesDataValues,
+    salesData,
+    servicesData,
+  ];
 }
