@@ -23,7 +23,6 @@ export async function getData() {
         return date.toLocaleDateString("en-US", {
           day: "numeric",
           month: "short",
-          year: "numeric",
         });
       });
       salesDataValues = salesData.map((row) => row.sales_total);
@@ -32,7 +31,6 @@ export async function getData() {
         return date.toLocaleDateString("en-US", {
           day: "numeric",
           month: "short",
-          year: "numeric",
         });
       });
       servicesDataValues = servicesData.map((row) => row.services_total);
