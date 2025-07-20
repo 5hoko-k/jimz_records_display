@@ -2,33 +2,33 @@ import Chart from "chart.js/auto";
 import { getData } from "./fetchData.mjs";
 
 async function getChart() {
-  const [
-    salesLabels,
-    salesValues,
-    servicesLabels,
-    servicesValues,
+  const {
+    salesDataLabels,
+    salesDataValues,
+    servicesDataLabels,
+    servicesDataValues,
     salesData,
     servicesData,
-    totalLabels,
-    totalValues,
-    total,
-  ] = await getData();
+    totalDataLabels,
+    totalDataValues,
+    totalData,
+  } = await getData();
 
   console.log("Got the Sales data: ");
   console.log(salesData);
   console.log("Got the Services data: ");
   console.log(servicesData);
-  console.log("Got the total data: ", total);
+  console.log("Got the total data: ", totalDataValues);
 
   const salesChartElement = document.getElementById("salesChart");
   new Chart(salesChartElement, {
     type: "bar",
     data: {
-      labels: salesLabels,
+      labels: salesDataLabels,
       datasets: [
         {
           label: "Sales",
-          data: salesValues,
+          data: salesDataValues,
           borderwidth: 1,
         },
       ],
@@ -46,11 +46,11 @@ async function getChart() {
   new Chart(servicesChartElement, {
     type: "bar",
     data: {
-      labels: servicesLabels,
+      labels: servicesDataLabels,
       datasets: [
         {
           label: "Services",
-          data: servicesValues,
+          data: servicesDataValues,
           borderwidth: 1,
         },
       ],
@@ -68,11 +68,11 @@ async function getChart() {
   new Chart(totalChartElement, {
     type: "bar",
     data: {
-      labels: totalLabels,
+      labels: totalDataLabels,
       datasets: [
         {
           label: "total",
-          data: totalValues,
+          data: totalDataValues,
           borderwidth: 1,
         },
       ],
@@ -88,3 +88,17 @@ async function getChart() {
 }
 
 document.addEventListener("DOMContentLoaded", async () => await getChart());
+
+async function totalDetails() {
+  const { totalDataValues } = await getData();
+  let total = 0;
+  for (let i = 0; i <= totalDataValues.length - 1; i++) {
+    total = total + totalDataValues[i];
+  }
+  document.getElementById("totalElement").innerHTML = total;
+
+}
+
+document.addEventListener("DOMContentLoaded", async () => {
+  await totalDetails();
+});

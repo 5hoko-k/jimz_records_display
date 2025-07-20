@@ -51,7 +51,7 @@ export async function getData() {
       console.log(error);
     });
 
-  return [
+  return {
     salesDataLabels,
     salesDataValues,
     servicesDataLabels,
@@ -61,5 +61,5 @@ export async function getData() {
     totalDataLabels,
     totalDataValues,
     totalData,
-  ];
+  };
 }
