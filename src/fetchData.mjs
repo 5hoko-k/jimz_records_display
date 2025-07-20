@@ -1,10 +1,13 @@
 export async function getData() {
   let salesData;
   let servicesData;
+  let totalData;
   let salesDataLabels;
   let salesDataValues;
   let servicesDataLabels;
   let servicesDataValues;
+  let totalDataLabels;
+  let totalDataValues;
 
   console.log("fetching Data... ");
 
@@ -17,6 +20,7 @@ export async function getData() {
     .then((resData) => {
       salesData = resData.sales;
       servicesData = resData.services;
+      totalData = resData.total;
 
       salesDataLabels = salesData.map((row) => {
         const date = new Date(row.date);
@@ -34,6 +38,14 @@ export async function getData() {
         });
       });
       servicesDataValues = servicesData.map((row) => row.services_total);
+      totalDataLabels = totalData.map((row) => {
+        const date = new Date(row.date);
+        return date.toLocaleDateString("en-US", {
+          day: "numeric",
+          month: "short",
+        });
+      });
+      totalDataValues = totalData.map((row) => row.total);
     })
     .catch((error) => {
       console.log(error);
@@ -46,5 +58,8 @@ export async function getData() {
     servicesDataValues,
     salesData,
     servicesData,
+    totalDataLabels,
+    totalDataValues,
+    totalData,
   ];
 }

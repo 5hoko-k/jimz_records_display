@@ -9,12 +9,16 @@ async function getChart() {
     servicesValues,
     salesData,
     servicesData,
+    totalLabels,
+    totalValues,
+    total,
   ] = await getData();
 
   console.log("Got the Sales data: ");
   console.log(salesData);
   console.log("Got the Services data: ");
   console.log(servicesData);
+  console.log("Got the total data: ", total);
 
   const salesChartElement = document.getElementById("salesChart");
   new Chart(salesChartElement, {
@@ -47,6 +51,28 @@ async function getChart() {
         {
           label: "Services",
           data: servicesValues,
+          borderwidth: 1,
+        },
+      ],
+    },
+    options: {
+      scales: {
+        y: {
+          baginAtZero: true,
+        },
+      },
+    },
+  });
+
+  const totalChartElement = document.getElementById("totalChart");
+  new Chart(totalChartElement, {
+    type: "bar",
+    data: {
+      labels: totalLabels,
+      datasets: [
+        {
+          label: "total",
+          data: totalValues,
           borderwidth: 1,
         },
       ],

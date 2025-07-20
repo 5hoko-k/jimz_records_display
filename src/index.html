@@ -7,8 +7,10 @@
     <script type="module" src="index.js"></script>
     <link href="index.css" rel="stylesheet" />
   </head>
-  <body class="p-5 bg-green-50">
-    <div class="flex flex-col gap-6 justify-center items-center h-screen">
+  <body class="bg-theme-primary-dark">
+    <div
+      class="flex flex-col gap-6 justify-center items-center min-h-screen xl:max-w-2/3 mx-auto py-12 bg-theme-primary shadow-xl"
+    >
       <div class="flex flex-col justify-center items-center">
         <h2 class="text-3xl">Sales Chart</h2>
         <div class="w-2xl">
@@ -19,6 +21,12 @@
         <h2 class="text-3xl">Services chart</h2>
         <div class="w-2xl">
           <canvas id="servicesChart"></canvas>
+        </div>
+      </div>
+      <div class="flex flex-col justify-center items-center">
+        <h2 class="text-3xl">Total chart</h2>
+        <div class="w-2xl">
+          <canvas id="totalChart"></canvas>
         </div>
       </div>
     </div>
